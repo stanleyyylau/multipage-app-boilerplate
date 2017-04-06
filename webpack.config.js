@@ -4,9 +4,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
 
+// For samll projects, recommend just use one CSS file like app.css
+// While medium to large projects, use [name].css to split out one css for each entry
 
 var extractPlugin = new ExtractTextPlugin({
-    filename: '[name].css'
+    filename: 'app.css'
 });
 
 module.exports = {
