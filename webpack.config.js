@@ -8,7 +8,8 @@ var autoprefixer = require('autoprefixer');
 // While medium to large projects, use [name].css to split out one css for each entry
 
 var extractPlugin = new ExtractTextPlugin({
-    filename: 'app.css'
+    filename: 'app.css',
+    allChunks: true
 });
 
 module.exports = {
@@ -19,7 +20,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
-        publicPath: 'dist'
+        publicPath: '/'
     },
     module: {
         rules: [{
@@ -39,14 +40,17 @@ module.exports = {
         }, {
             test: /\.pug$/,
             use: 'pug-loader'
-        }]
-    },
+        }, // image & font
+        { test: /\.(woff|woff2|eot|ttf|otf)$/i, use: 'url-loader?limit=8192&name=[name].[ext]' },
+        { test: /\.(jpe?g|png|gif|svg)$/i, use: 'url-loader?limit=81920&name=[name].[ext]'},
+        { test: /\.(jpe?g|png|gif|svg)$/i, use: 'file-loader?hash=sha512&digest=hex&name=[name].[hash].[ext]'}
+        ]},
     plugins: [
         extractPlugin,
         new HtmlWebpackPlugin({
             test: "some test here",
             title: "title from template",
-            template: './src/view/index/index.pug'
+            template: 'html-withimg-loader!'+path.resolve(__dirname, 'src/view/index/index.html')
         }),
         new HtmlWebpackPlugin({
             filename: 'about.html',
