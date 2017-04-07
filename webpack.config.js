@@ -41,9 +41,8 @@ module.exports = {
             test: /\.pug$/,
             use: 'pug-loader'
         }, // image & font
-        { test: /\.(woff|woff2|eot|ttf|otf)$/i, use: 'url-loader?limit=8192&name=[name].[ext]' },
-        { test: /\.(jpe?g|png|gif|svg)$/i, use: 'url-loader?limit=81920&name=[name].[ext]'},
-        { test: /\.(jpe?g|png|gif|svg)$/i, use: 'file-loader?hash=sha512&digest=hex&name=[name].[hash].[ext]'}
+        { test: /\.(woff|woff2|eot|ttf|otf)$/i, use: 'url-loader?limit=8192&name=[name].[hash].[ext]' },
+        { test: /\.(jpe?g|png|gif|svg)$/i, use: 'url-loader?limit=8192&name=[name].[hash].[ext]'}
         ]},
     plugins: [
         extractPlugin,
