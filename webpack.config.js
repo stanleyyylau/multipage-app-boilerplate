@@ -8,7 +8,7 @@ var autoprefixer = require('autoprefixer');
 // While medium to large projects, use [name].css to split out one css for each entry
 
 var extractPlugin = new ExtractTextPlugin({
-    filename: 'app.css',
+    filename: '[name].css',
     allChunks: true
 });
 
@@ -49,11 +49,13 @@ module.exports = {
         new HtmlWebpackPlugin({
             test: "some test here",
             title: "title from template",
+            chunks: ['index'], // only inject content related to index page
             template: 'html-withimg-loader!'+path.resolve(__dirname, 'src/view/index/index.html')
         }),
         new HtmlWebpackPlugin({
             filename: 'about.html',
             test: "te",
+            chunks: ['about'],
             title: "title from abot pagge",
             template: './src/view/about/about.pug'
         }),

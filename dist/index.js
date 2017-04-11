@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -75,8 +75,14 @@
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 3 */,
-/* 4 */
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "1.4f8136eb1a72ce3dfb6a6e04b73a8a6e.png";
+
+/***/ }),
+/* 4 */,
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84,6 +90,7 @@
 
 __webpack_require__(2);
 
+__webpack_require__(3);
 console.log('hi');
 console.log(test);
 
