@@ -38,19 +38,37 @@ module.exports = {
                 use: ['css-loader', 'sass-loader', 'postcss-loader']
             })
         }, {
+            test: /\.css$/,
+            use: extractPlugin.extract({
+                use: ['css-loader']
+            })
+        }, {
             test: /\.pug$/,
             use: 'pug-loader'
         }, // image & font
         { test: /\.(woff|woff2|eot|ttf|otf)$/i, use: 'url-loader?limit=8192&name=[name].[hash].[ext]' },
-        { test: /\.(jpe?g|png|gif|svg)$/i, use: 'url-loader?limit=8192&name=[name].[hash].[ext]'}
-        ]},
+        { test: /\.(jpe?g|png|gif|svg)$/i, use: 'url-loader?limit=8192&name=[name].[hash].[ext]' }
+        ]
+    },
     plugins: [
         extractPlugin,
+        new webpack.optimize.UglifyJsPlugin({
+            compressor: { warnings: false }
+        }),
         new HtmlWebpackPlugin({
             test: "some test here",
             title: "title from template",
             chunks: ['index'], // only inject content related to index page
-            template: 'html-withimg-loader!'+path.resolve(__dirname, 'src/view/index/index.html')
+            template: 'html-withimg-loader!' + path.resolve(__dirname, 'src/view/index/index.html'),
+            minify: {
+                removeComments: true,        //去注释
+                collapseWhitespace: true,    //压缩空格
+                removeAttributeQuotes: true  //去除属性引用
+                // more options:
+                // https://github.com/kangax/html-minifier#options-quick-reference
+            },
+            //必须通过上面的 CommonsChunkPlugin 的依赖关系自动添加 js，css 等
+            chunksSortMode: 'dependency'
         }),
         new HtmlWebpackPlugin({
             filename: 'about.html',
