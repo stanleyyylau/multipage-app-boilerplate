@@ -13,3 +13,5 @@ A multipage app boilerplate with ES6+Sass+Webpack+eslint support
 
 ## Improvements needed
 + Should be able to copy static js files to ``dist`` folder to avoid bundling of these files
++ Should be able to read ``view`` folder and automatically include entry file in the ``entry`` point
++ Should be able to read ``view`` folder and automatically include ``html-webpack-plugin`` in ``webpack.config.js`` file
